@@ -10,7 +10,7 @@ public class creditsButton extends Button
 {
     public void onClick()
     {
-        Greenfoot.setWorld(new credits());
+        Greenfoot.setWorld(Credits.credits);
     }
 }
 

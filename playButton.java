@@ -19,7 +19,7 @@ public class playButton extends Button
     
     public void onClick()
     {
-        Greenfoot.setWorld(new play());
+        Greenfoot.setWorld(Play.play);
         sound.stop();
     }
 }

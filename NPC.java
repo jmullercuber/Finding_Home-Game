@@ -35,7 +35,7 @@ public class NPC extends Actor1
      */
     public void npcmovement()
     {
-        if( Greenfoot.isKeyDown("right"))
+        if ( Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d") )
         {
             setLocation(getX() + 2, getY());
             setImage("Ship Engine On.png");
@@ -49,7 +49,7 @@ public class NPC extends Actor1
             movinLeft = 0;
             //change image to Engine On, else Engine Off
         }
-        if( Greenfoot.isKeyDown("left"))
+        if ( Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a") )
         {
             setLocation(getX() - 2, getY());
             setImage("Ship Engine Off.png");
@@ -61,7 +61,7 @@ public class NPC extends Actor1
             movinDown = 0;
             movinRight = 0;
         }
-        if( Greenfoot.isKeyDown("Up"))
+        if ( Greenfoot.isKeyDown("Up") | Greenfoot.isKeyDown("w") )
         {
             setLocation(getX(), getY() - 2);
             movin = 1;
@@ -70,7 +70,7 @@ public class NPC extends Actor1
             movinDown = 0;
             movinRight = 0;
         }
-        if(Greenfoot.isKeyDown("Down"))
+        if ( Greenfoot.isKeyDown("Down") | Greenfoot.isKeyDown("s") )
         {
             setLocation(getX(), getY() + 2);
             movin = 1;
@@ -79,50 +79,7 @@ public class NPC extends Actor1
             movinLeft = 0;
             movinRight = 0;
         }
-        if( Greenfoot.isKeyDown("d"))
-        {
-            setLocation(getX() + 2, getY());
-            setImage("Ship Engine On.png");
-            GreenfootImage image = getImage();
-            image.scale(image.getWidth() - 350, image.getHeight() - 60);
-            setImage(image);
-            movin = 1;
-            movinRight = 1;
-            movinUp = 0;
-            movinDown = 0;
-            movinLeft = 0;
-        }
-        if( Greenfoot.isKeyDown("a"))
-        {
-            setLocation(getX() - 2, getY());
-            setImage("Ship Engine Off.png");
-            GreenfootImage image = getImage();
-            image.scale(image.getWidth() - 260, image.getHeight() - 53);
-            setImage(image);
-            movinLeft = 1;
-            movinUp = 0;
-            movinDown = 0;
-            movinRight = 0;
-        }
-        if( Greenfoot.isKeyDown("w"))
-        {
-            setLocation(getX(), getY() - 2);
-            movin = 1;
-            movinUp = 1;
-            movinDown = 0;
-            movinLeft = 0;
-            movinRight = 0;
-        }
-        if(Greenfoot.isKeyDown("s"))
-        {
-            setLocation(getX(), getY() + 2);
-            movin = 1;
-            movinDown = 1;
-            movinUp = 0;
-            movinLeft = 0;
-            movinRight = 0;
-        }
-        if(movin == 0) {
+        if (movin == 0) {
            setImage("Ship Engine Off.png");
             GreenfootImage image = getImage();
             image.scale(image.getWidth() - 260, image.getHeight() - 53);
@@ -130,5 +87,18 @@ public class NPC extends Actor1
           
         }
         movin = 0;
+    }
+
+    public void npcshoot()
+    {
+        if (delay == 0) {
+            getWorld().addObject(new Bullet(), getX() + 50, getY());
+
+            delay = 20;
+
+        }
+        if (delay > 0) {
+            delay --;
+        }
     }
 }

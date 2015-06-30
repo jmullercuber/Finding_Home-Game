@@ -27,6 +27,13 @@ public class Bullet extends Actor
 
     public void Edge()
     {
+        // if touching an asteroid, break asteroid and remove self
+        // only one asteriod can be broken per bullet
+        //Actor touchingAsteroid = getOneIntersectingObject(Asteroid.class);
+        //if (touchingAsteroid != null) {
+        //    ((Asteroid) touchingAsteroid).breakUp();
+        //    getWorld().removeObject(this);
+        //}
         // if at the world edge, remove
         if (getX() >= 1000)
         {
