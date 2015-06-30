@@ -1,0 +1,17 @@
+# Images
+images/*
+
+# Sounds
+sounds/*
+
+# Unnecessary Greenfoot/BlueJ Files
+*.ctxt
+
+# Generated Documentation
+doc/
+
+# Complied Code
+*.class
+
+# Temporary Files
+*~
