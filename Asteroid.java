@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Asteroid extends Test
+public class Asteroid extends Actor
 {
     public int asteroidDelay = 100;
     public int asteroidSpeed = 3;
