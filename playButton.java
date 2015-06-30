@@ -6,19 +6,20 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class playButton extends Actor
+public class playButton extends Button
 {
-   GreenfootSound sound = new GreenfootSound("1.wav");
-    /**
-     * Act - do whatever the playButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+    GreenfootSound sound;
+    
+    // Constructor
+    public playButton() {
+        // continuously play the start screen music
+        this.sound = new GreenfootSound("1.wav");
+        sound.playLoop();
+    }
+    
+    public void onClick()
     {
-        sound.play();
-        if(Greenfoot.mouseClicked(this)){
-            Greenfoot.setWorld(new play());
-            sound.stop();
-        }
-    }    
+        Greenfoot.setWorld(new play());
+        sound.stop();
+    }
 }
