@@ -19,25 +19,22 @@ public class play extends World
         addObject(new Asteroid(), 1500, Greenfoot.getRandomNumber(400));
         addObject(new Actor1(), 50, 400);
         Greenfoot.playSound("2.wav");
-        
-        
     }
     
     public void act()
     {
         timer ++;
-        if(timer == 7830) {
+        if (timer == 7830) {
             Greenfoot.playSound("3.wav");
         }
-        if(timer == 38410) {
+        else if (timer == 38410) {
             Greenfoot.playSound("4.wav");
         }
-        if(timer == 39826) {
+        else if (timer == 39826) {
             Greenfoot.playSound("5.wav");
         }
-        if(timer == 43177) {
+        else if (timer == 43177) {
             Greenfoot.playSound("6.wav");
         }
-        
     }
 }

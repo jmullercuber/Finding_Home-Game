@@ -8,8 +8,7 @@ import greenfoot.*;
  */
 public class NPC extends Actor1
 {
-   private int movin = 0;
-   
+    private int movin = 0;
     private int movinUp = 0;
     private int movinDown = 0;
     private int movinRight = 0;
