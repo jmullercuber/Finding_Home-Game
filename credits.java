@@ -8,7 +8,6 @@ import greenfoot.*;
  */
 public class credits extends World
 {
-
     /**
      * Constructor for objects of class credits.
      * 

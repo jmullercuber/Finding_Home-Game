@@ -9,7 +9,7 @@ import greenfoot.*;
 public class Bullet extends Actor
 {
     
-            
+    
     /**
      * Act - do whatever the Bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -18,21 +18,19 @@ public class Bullet extends Actor
     {
         move();
         Edge();
-        
-    }    
+    }
 
     private void move()
     {
         setLocation(getX() + 20, getY());
-        
     }
 
     public void Edge()
     {
-        if(getX() >= 1000)
+        // if at the world edge, remove
+        if (getX() >= 1000)
         {
             getWorld().removeObject(this);
-
         }
     }
 }

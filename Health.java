@@ -12,7 +12,7 @@ public class Health extends Test
      * Act - do whatever the Health wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act() 
+    public void act()
     {
         move(-4);
         
@@ -23,7 +23,7 @@ public class Health extends Test
 
             }
         }
-    }    
+    }
 
     public Health()
     {

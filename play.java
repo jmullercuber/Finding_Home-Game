@@ -14,7 +14,7 @@ public class play extends World
      * 
      */
     public play()
-    {    
+    {
         super(1008, 800, 1);
         addObject(new Asteroid(), 1500, Greenfoot.getRandomNumber(400));
         addObject(new Actor1(), 50, 400);
@@ -22,6 +22,7 @@ public class play extends World
         
         
     }
+    
     public void act()
     {
         timer ++;

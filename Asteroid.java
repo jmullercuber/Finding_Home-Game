@@ -17,14 +17,15 @@ public class Asteroid extends Test
      * Act - do whatever the Asteroid wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act() 
+    public void act()
     {
         set();
         Edge();
         Delay();
+        // slowly rotate counter-clockwise
         turn(-1);
         a = Greenfoot.getRandomNumber(4);
-    }  
+    }
 
     public Asteroid()
     {
@@ -78,10 +79,13 @@ public class Asteroid extends Test
                 populate();
             }
         }
-    }    
+    }
+    
+    public void breakUp() {
+    
+    }
     /*
      * Needs void for the asteroid to break into smaller pieces and eventually be destroyed.
      * Needs void for adding points to score when destroyed.
      */
-
 }

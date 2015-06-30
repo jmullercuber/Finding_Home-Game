@@ -19,12 +19,12 @@ public class Actor1 extends Test
      * Act - do whatever the Actor1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act() 
+    public void act()
     {
         movement();
         shoot();
         drift();
-    }  
+    }
 
     public void movement()
     {
