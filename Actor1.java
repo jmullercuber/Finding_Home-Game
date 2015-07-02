@@ -8,25 +8,30 @@ import greenfoot.*;
  */
 public class Actor1 extends Actor
 {
-    public int health = 3;
-    protected int delay = 0;
+    protected int bulletDelay = 0;
+     //Denotes which direction the player is moving in.
     private int moving = 0;
     private int movingUp = 0;
     private int movingDown = 0;
     private int movingRight = 0;
     private int movingLeft = 0;
-    public int timer = 0;
+    //music timer.
+    public int timer = -0;
     public int asteroidDelay = 1;
-    public int utillDeath = 750;
-    int difficulty = 20;
-    int a = 20;
+   //Rate of creating new asteroid. The lower int difficulty, the higher the rate of new asteroids.
+    int difficulty = 10;
+    //The chance of a new NPC being created.
+    private int chance;
+    //Whether or not mute is on or not. mute off = 0, mute on = 1.
     private int mute = 0;
+    //Souns for background music
     GreenfootSound sound = new GreenfootSound("1.wav");
     GreenfootSound sound2 = new GreenfootSound("2.wav");
     GreenfootSound sound3 = new GreenfootSound("3.wav");
     GreenfootSound sound4 = new GreenfootSound("4.wav");
     GreenfootSound sound5 = new GreenfootSound("5.wav");
     GreenfootSound sound6 = new GreenfootSound("6.wav");
+    
     /**
      * Act - do whatever the Actor1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -34,15 +39,30 @@ public class Actor1 extends Actor
     public void act()
     {
         movement();
+
         shoot();
+
         drift();
+        
+        muteFunction();
+
         createAsteroid();
-        if(utillDeath >= 749) {
-        utillDeath = utillDeath - 1;
+
+        populateNPC();
+
+        lose();
+        
+        engineStatus();
     }
+
+    /**
+     * Allows the player to mute the current music playing if key m is pressed.
+     */
+    public void muteFunction()
+    {
         if(mute == 0)  
         {
-            
+
             playSongs();
         }
         if(Greenfoot.isKeyDown("m")){
@@ -53,40 +73,38 @@ public class Actor1 extends Actor
             sound4.stop();
             sound5.stop();
         }
-        if(utillDeath <= 0) {
-            getWorld().addObject(new fastAsteroid(), getX() + 1000, getY());
-            utillDeath = 748;
-        }
-        
-        //Turn back on
-        //lose();
     }
-
-    public void playSongs()
+    public Actor1()
     {
         
-        
-            if(timer == 0)  {
-            sound3.stop();
+    }
+    /**
+     * Plays the continuous background music.
+     * Runs on hard timer, int timer. timer ++ included here.
+     */
+    public void playSongs()
+    {
+        if(timer == 0)  {
+            getWorld().addObject(new NPC(),getX() - Greenfoot.getRandomNumber(200) , getY() + Greenfoot.getRandomNumber(100) );
             sound3.play();
-        }
-         
-        
-        timer ++;
 
-        if(timer == 7830) {
+        }
+        timer ++;
+        if(timer == 31080) {
             sound4.play();
         }
-        if(timer == 38510) {
+        if(timer == 33396) {
             sound5.play();
         }
         if(timer == 41226) {
-            sound6.play();
+            //sound6.play();
         }
-        
 
     }
 
+    /**
+     * Switches to lose screen if the object intersects with an asteroid.
+     */
     public void lose()
     {
         Actor asteroid = getOneIntersectingObject(Asteroid.class);
@@ -98,19 +116,28 @@ public class Actor1 extends Actor
             sound5.stop();
             Greenfoot.setWorld(new lose());
         }
-        Actor turningasteroid = getOneIntersectingObject(turningAsteroid.class);
-        if(turningasteroid != null){
-            sound.stop();
-            Greenfoot.setWorld(new lose());
-        }
     }
-
+    public void engineStatus()
+    {
+         if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
+           {
+             setImage("Ship Engine On.png");
+           }
+         else
+         {
+             setImage("Ship Engine Off.png");
+         }
+    }
+    /**
+     * Allows the player to use the arrow keys to move the ship.
+     * Changes the ship image depending on direction the ship is moving.
+     */
     public void movement()
     {
         if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
         {
             setLocation(getX() + 2, getY());
-            setImage("Ship Engine On.png");
+            //setImage("Ship Engine On.png");
             GreenfootImage image = getImage();
             //image.scale(image.getWidth() - 350, image.getHeight() - 60);
             setImage(image);
@@ -124,7 +151,7 @@ public class Actor1 extends Actor
         if ( Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a") )
         {
             setLocation(getX() - 2, getY());
-            setImage("Ship Engine Off.png");
+            //setImage("Ship Engine Off.png");
             GreenfootImage image = getImage();
             //image.scale(image.getWidth() - 260, image.getHeight() - 53);
             setImage(image);
@@ -152,7 +179,7 @@ public class Actor1 extends Actor
             movingRight = 0;
         }
         if (moving == 0) {
-            setImage("Ship Engine Off.png");
+            //setImage("Ship Engine Off.png");
             GreenfootImage image = getImage();
             //image.scale(image.getWidth() - 260, image.getHeight() - 53);
             setImage(image);
@@ -161,22 +188,33 @@ public class Actor1 extends Actor
         moving = 0;
     }
 
+    /**
+     * If spacebar is pressed, new bullet is created and a delay is added for when the next bullet may be shot.
+     * Rapidfire powerup code.
+     */
     public void shoot()
     {
-        if (delay == 0) {
+        Actor rapidfire = getOneIntersectingObject(rapidFireIcon.class);
+        if (bulletDelay == 0) {
             if (Greenfoot.isKeyDown("space")) {
                 getWorld().addObject(new Bullet(), getX() + 50, getY());
-
-                delay = 20;
+                if(rapidfire != null){
+                    bulletDelay = 10;
+                }
+                else if (rapidfire == null)
+                {
+                    bulletDelay = 100;
+                }
             }
         }
-        if (delay > 0) {
-            delay --;
+        if (bulletDelay > 0) {
+            bulletDelay --;
         }
     }
 
-    
-
+    /**
+     * Depending on the last direction of the player, the ship will continue to "drift" in that direction.
+     */
     public void drift()
     {
         if (movingUp == 1) {
@@ -193,6 +231,9 @@ public class Actor1 extends Actor
         }
     }
 
+    /** 
+     * Decides when to create asteroids. Rate of creation dependent on int difficulty.
+     */
     public void createAsteroid()
     {
         if(asteroidDelay > 0){
@@ -204,8 +245,23 @@ public class Actor1 extends Actor
         }
     }    
 
+    /**
+     * Creates new asteroid at random Y location.
+     */
     public void populate()
     {
         getWorld().addObject(new Asteroid(), 1008, Greenfoot.getRandomNumber(850));
+    }
+
+    /**
+     * Creates new NPC/ Probability of new NPC.
+     */
+    public void populateNPC()
+    {
+        chance = Greenfoot.getRandomNumber(10000);
+        if( chance == 1 ){
+            getWorld().addObject(new NPC(),getX() - Greenfoot.getRandomNumber(200) , getY() + Greenfoot.getRandomNumber(100) );
+        }
+
     }
 }
