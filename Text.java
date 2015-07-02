@@ -7,10 +7,10 @@ import java.awt.Color;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Text extends Actor
+public class Text extends NPC
 {
-    int go;
-    int untillDeath = 750;
+    
+    public int untillDeath = 750;
     /**
      * Act - do whatever the Text wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -23,6 +23,7 @@ public class Text extends Actor
         }
         else if(go == 1) {
             sayToShoot();
+            setImage(new GreenfootImage(".", 1, Color.BLACK, Color.BLACK));
         }
         if(go == 3) {
             sayWatchOut();
@@ -35,21 +36,26 @@ public class Text extends Actor
 
     public void sayWatchOut()
     {
-        untillDeath = untillDeath --;
+        untillDeath = untillDeath - 1;
+
         if(untillDeath <= 0){
             setImage(new GreenfootImage("WATCH OUT!!!", 32, Color.WHITE, Color.BLACK));
-            Greenfoot.delay(200);
-            go = 4;
+            Greenfoot.delay(100);
+            sayInvasion();
+            
+            //go = 4;
         }
-        
-        
-    }
 
+    }
     public void sayInvasion()
     {
-        setImage(new GreenfootImage("Tell them ------", 21, Color.WHITE, Color.BLACK));
-        Greenfoot.delay(100);
-        getWorld().removeObject(this);
+        
+            setImage(new GreenfootImage("Tell them the enemy fleet bdslhbfa", 21, Color.WHITE, Color.BLACK));
+            Greenfoot.delay(100);
+            
+
+            getWorld().removeObject(this);
+        
 
     }
 
@@ -74,8 +80,7 @@ public class Text extends Actor
         Greenfoot.delay(70);
 
         
-        setImage(new GreenfootImage(".", 1, Color.BLACK, Color.BLACK));
         go = 3;
-        
+
     }
 }

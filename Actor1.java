@@ -17,6 +17,7 @@ public class Actor1 extends Actor
     private int movingLeft = 0;
     public int timer = 0;
     public int asteroidDelay = 1;
+    public int utillDeath = 750;
     int difficulty = 20;
     int a = 20;
     private int mute = 0;
@@ -36,8 +37,13 @@ public class Actor1 extends Actor
         shoot();
         drift();
         createAsteroid();
-        if(mute == 0) {
-              playSongs();
+        if(utillDeath >= 749) {
+        utillDeath = utillDeath - 1;
+    }
+        if(mute == 0)  
+        {
+            
+            playSongs();
         }
         if(Greenfoot.isKeyDown("m")){
             mute = 1;
@@ -47,7 +53,10 @@ public class Actor1 extends Actor
             sound4.stop();
             sound5.stop();
         }
-        
+        if(utillDeath <= 0) {
+            getWorld().addObject(new fastAsteroid(), getX() + 1000, getY());
+            utillDeath = 748;
+        }
         
         //Turn back on
         //lose();
@@ -55,23 +64,26 @@ public class Actor1 extends Actor
 
     public void playSongs()
     {
-        if(timer == 0)  {
-            sound2.play();
+        
+        
+            if(timer == 0)  {
+            sound3.stop();
+            sound3.play();
         }
+         
+        
         timer ++;
 
         if(timer == 7830) {
-            sound3.play();
-        }
-        if(timer == 38510) {
             sound4.play();
         }
-        if(timer == 41226) {
+        if(timer == 38510) {
             sound5.play();
         }
-        if(timer == 44277) {
+        if(timer == 41226) {
             sound6.play();
         }
+        
 
     }
 

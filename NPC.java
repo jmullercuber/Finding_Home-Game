@@ -13,8 +13,9 @@ public class NPC extends Actor1
     private int movinDown = 0;
     private int movinRight = 0;
     private int movinLeft = 0;
-    private int tillDeath = 750;
+    int tillDeath = 750;
     int tutorial = 1;
+    public int go = 0;
 
     /**
      * Act - do whatever the NPC wants to do. This method is called whenever
@@ -100,12 +101,20 @@ public class NPC extends Actor1
         movin = 0;
         if(tillDeath <= 0)
         {
-              //getWorld().addObject(new Text(), getX(), getY());
-                Actor player = (Actor1) getWorld().getObjects(Actor1.class).get(0);  
-                turnTowards(player.getX() + 100, player.getY());  
-             
-            move(3);
-            //if asteroid intersects c + 50 getWorld().addObject(new Text(), getX(), getY());
+            //getWorld().addObject(new Text(), getX(), getY());
+            Actor player = (Actor1) getWorld().getObjects(Actor1.class).get(0);  
+            turnTowards(player.getX() + 100, player.getY());  
+
+            move(15);
+            Actor fastasteroid = getOneIntersectingObject(fastAsteroid.class);
+            if(fastasteroid != null){
+                go = 4;
+                getWorld().addObject(new Explosion(), getX(), getY());
+                getWorld().removeObject(fastasteroid);
+                
+                getWorld().removeObject(this);
+
+            }
         }
     }
 
