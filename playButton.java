@@ -8,18 +8,35 @@ import greenfoot.*;
  */
 public class playButton extends Button
 {
-    GreenfootSound sound;
-    
+    //GreenfootSound sound;
+
+    GreenfootSound sound = new GreenfootSound("1.wav");
+    int mute = 0;
     // Constructor
     public playButton() {
         // continuously play the start screen music
-        this.sound = new GreenfootSound("1.wav");
-        sound.playLoop();
+
+        //sound.playLoop();
     }
-    
-    public void onClick()
+
+    public void act()
     {
-        Greenfoot.setWorld(Play.play);
-        sound.stop();
+        if (mute == 0){
+            sound.play();
+        }
+        if(Greenfoot.mouseClicked(this)){
+            Greenfoot.setWorld(new tutorialWorld());
+            sound.stop();
+        }
+        if(Greenfoot.isKeyDown("m")){
+            mute = 1;
+            sound.stop();
+
+        }
     }
+    //public void onClick()
+    // {
+    //     Greenfoot.setWorld(Play.play);
+    //      sound.stop();
+    // }
 }

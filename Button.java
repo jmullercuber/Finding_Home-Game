@@ -14,10 +14,10 @@ public abstract class Button extends Actor
      */
     public void act() 
     {
-        if (Greenfoot.mouseClicked(this)) {
-            onClick();
-        }
+        //if (Greenfoot.mouseClicked(this)) {
+        //    onClick();
+        //}
     }
     
-    public abstract void onClick();
+    //public abstract void onClick();
 }
