@@ -27,7 +27,7 @@ public class playButton extends Button
         if(Greenfoot.mouseClicked(this)){
             //tutorial not ready yet
             //Greenfoot.setWorld(new tutorialWorld());
-            Greenfoot.setWorld(new Play());
+            Greenfoot.setWorld(new tutorialWorld());
             sound.stop();
         }
         if(Greenfoot.isKeyDown("m")){

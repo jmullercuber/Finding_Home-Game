@@ -21,16 +21,15 @@ public class tutorialWorld extends World
         prepare();
     }
 
+
     /**
      * Prepare the world for the start of the program. That is: create the initial
      * objects and add them to the world.
      */
     private void prepare()
     {
-        Actor1 actor1 = new Actor1();
-        addObject(actor1, 323, 378);
-        NPC npc = new NPC();
-        addObject(npc, 264, 453);
-        npc.setLocation(246, 328);
+        playAgainButton playagainbutton = new playAgainButton();
+        addObject(playagainbutton, 486, 673);
+        playagainbutton.setLocation(482, 668);
     }
 }

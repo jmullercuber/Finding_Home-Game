@@ -1,5 +1,5 @@
 import greenfoot.*;
-
+import java.awt.Color;
 /**
  * Write a description of class Actor1 here.
  * 
@@ -93,12 +93,7 @@ public class Actor1 extends Actor
         if(timer == 31080) {
             sound4.play();
         }
-        if(timer == 33396) {
-            sound5.play();
-        }
-        if(timer == 41226) {
-            //sound6.play();
-        }
+        
 
     }
 
