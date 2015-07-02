@@ -13,6 +13,9 @@ public class NPC extends Actor1
     private int movinDown = 0;
     private int movinRight = 0;
     private int movinLeft = 0;
+    private int tillDeath = 750;
+    int tutorial = 1;
+
     /**
      * Act - do whatever the NPC wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -20,15 +23,22 @@ public class NPC extends Actor1
     public void act() 
     {
         drift();
+        if(tutorial == 1){
+            tutorial();
+            tutorial = 2;
+        }
         npcshoot();
+        npcmovement();
     }    
+
     public NPC()
     {
         GreenfootImage image = getImage();
-        image.scale(image.getWidth() - 260, image.getHeight() - 53);
+        //image.scale(image.getWidth() - 260, image.getHeight() - 53);
         setImage(image);
+        delay = 10;
     }
- 
+
     /**
      * The NPC ship needs to be able to move on its own according to where the asteroids are around it
      * Basically it can't move randomllu, it has to be somewhat smart about it.
@@ -37,10 +47,10 @@ public class NPC extends Actor1
     {
         if ( Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d") )
         {
-            setLocation(getX() + 2, getY());
+            setLocation(getX() - 2, getY());
             setImage("Ship Engine On.png");
             GreenfootImage image = getImage();
-            image.scale(image.getWidth() - 350, image.getHeight() - 60);
+            //image.scale(image.getWidth() - 350, image.getHeight() - 60);
             setImage(image);
             movin = 1;
             movinRight = 1;
@@ -51,10 +61,10 @@ public class NPC extends Actor1
         }
         if ( Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a") )
         {
-            setLocation(getX() - 2, getY());
+            setLocation(getX() + 2, getY());
             setImage("Ship Engine Off.png");
             GreenfootImage image = getImage();
-            image.scale(image.getWidth() - 260, image.getHeight() - 53);
+            //image.scale(image.getWidth() - 260, image.getHeight() - 53);
             setImage(image);
             movinLeft = 1;
             movinUp = 0;
@@ -63,7 +73,7 @@ public class NPC extends Actor1
         }
         if ( Greenfoot.isKeyDown("Up") | Greenfoot.isKeyDown("w") )
         {
-            setLocation(getX(), getY() - 2);
+            setLocation(getX(), getY() + 2);
             movin = 1;
             movinUp = 1;
             movinLeft = 0;
@@ -72,7 +82,7 @@ public class NPC extends Actor1
         }
         if ( Greenfoot.isKeyDown("Down") | Greenfoot.isKeyDown("s") )
         {
-            setLocation(getX(), getY() + 2);
+            setLocation(getX(), getY() - 2);
             movin = 1;
             movinDown = 1;
             movinUp = 0;
@@ -80,13 +90,23 @@ public class NPC extends Actor1
             movinRight = 0;
         }
         if (movin == 0) {
-           setImage("Ship Engine Off.png");
+            setImage("Ship Engine Off.png");
             GreenfootImage image = getImage();
-            image.scale(image.getWidth() - 260, image.getHeight() - 53);
+            //image.scale(image.getWidth() - 260, image.getHeight() - 53);
             setImage(image);
-          
+            setLocation(getX(), getY() - 2);
+
         }
         movin = 0;
+        if(tillDeath <= 0)
+        {
+              //getWorld().addObject(new Text(), getX(), getY());
+                Actor player = (Actor1) getWorld().getObjects(Actor1.class).get(0);  
+                turnTowards(player.getX() + 100, player.getY());  
+             
+            move(3);
+            //if asteroid intersects c + 50 getWorld().addObject(new Text(), getX(), getY());
+        }
     }
 
     public void npcshoot()
@@ -100,5 +120,13 @@ public class NPC extends Actor1
         if (delay > 0) {
             delay --;
         }
+        tillDeath --;
+    }
+
+    public void tutorial()
+    {
+
+        getWorld().addObject(new Text(), getX() + 200, getY());
+
     }
 }

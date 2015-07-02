@@ -40,9 +40,9 @@ public class back extends World
         playbutton.setLocation(524, 298);
         
         // NPC
-        NPC npc = new NPC();
-        addObject(npc, 305, 441);
-        npc.setLocation(270, 429);
+        //NPC npc = new NPC();
+        //addObject(npc, 305, 441);
+        //npc.setLocation(270, 429);
         
         // credits button
         creditsButton creditsbutton = new creditsButton();

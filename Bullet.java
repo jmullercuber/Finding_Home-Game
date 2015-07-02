@@ -8,16 +8,17 @@ import greenfoot.*;
  */
 public class Bullet extends Actor
 {
-    
-    
+
     /**
      * Act - do whatever the Bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        move();
-        Edge();
+        temporaryRemoveAsteroidVoid();
+        move(20);
+        //Edge();
+
     }
 
     private void move()
@@ -38,6 +39,24 @@ public class Bullet extends Actor
         if (getX() >= 1000)
         {
             getWorld().removeObject(this);
+        }
+    }
+
+    public void temporaryRemoveAsteroidVoid()
+    {
+        Actor asteroid = getOneIntersectingObject(Asteroid.class);
+        if(asteroid != null){
+
+            getWorld().removeObject(asteroid);
+            getWorld().removeObject(this);
+        }
+        else
+        {
+            move();
+            if (getX() >= 1000)
+            {
+                getWorld().removeObject(this);
+            }
         }
     }
 }
