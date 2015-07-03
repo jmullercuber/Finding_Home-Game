@@ -50,7 +50,7 @@ public class Actor1 extends Actor
 
         populateNPC();
 
-        //lose();
+        lose();
         
         engineStatus();
     }
