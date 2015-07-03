@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class Win extends World
 {
-
+GreenfootSound sound7 = new GreenfootSound("7.wav");
     /**
      * Constructor for objects of class Win.
      * 
@@ -17,7 +17,7 @@ public class Win extends World
     {    
         
         super(600, 400, 1); 
-      
+        sound7.play();
         
     }
 }

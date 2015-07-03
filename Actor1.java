@@ -26,11 +26,11 @@ public class Actor1 extends Actor
     private int mute = 0;
     //Souns for background music
     GreenfootSound sound = new GreenfootSound("1.wav");
-    GreenfootSound sound2 = new GreenfootSound("2.wav");
+
     GreenfootSound sound3 = new GreenfootSound("3.wav");
     GreenfootSound sound4 = new GreenfootSound("4.wav");
-    GreenfootSound sound5 = new GreenfootSound("5.wav");
-    GreenfootSound sound6 = new GreenfootSound("6.wav");
+
+    
     
     /**
      * Act - do whatever the Actor1 wants to do. This method is called whenever
@@ -50,7 +50,7 @@ public class Actor1 extends Actor
 
         populateNPC();
 
-        lose();
+        //lose();
         
         engineStatus();
     }
@@ -68,10 +68,10 @@ public class Actor1 extends Actor
         if(Greenfoot.isKeyDown("m")){
             mute = 1;
             sound.stop();
-            sound2.stop();
+
             sound3.stop();
             sound4.stop();
-            sound5.stop();
+
         }
     }
     public Actor1()
@@ -86,8 +86,11 @@ public class Actor1 extends Actor
     {
         if(timer == 0)  {
             getWorld().addObject(new NPC(),getX() - Greenfoot.getRandomNumber(200) , getY() + Greenfoot.getRandomNumber(100) );
-            sound3.play();
+            
 
+        }
+        if(timer <= 31080) {
+            sound3.play();
         }
         timer ++;
         if(timer == 31080) {
@@ -105,10 +108,10 @@ public class Actor1 extends Actor
         Actor asteroid = getOneIntersectingObject(Asteroid.class);
         if(asteroid != null){
             sound.stop();
-            sound2.stop();
+
             sound3.stop();
             sound4.stop();
-            sound5.stop();
+
             Greenfoot.setWorld(new lose());
         }
     }
@@ -124,7 +127,7 @@ public class Actor1 extends Actor
          }
     }
     /**
-     * Allows the player to use the arrow keys to move the ship.
+     * Allows the player to use the WASD/arrow keys to move the ship.
      * Changes the ship image depending on direction the ship is moving.
      */
     public void movement()
@@ -189,17 +192,16 @@ public class Actor1 extends Actor
      */
     public void shoot()
     {
-        Actor rapidfire = getOneIntersectingObject(rapidFireIcon.class);
+
         if (bulletDelay == 0) {
             if (Greenfoot.isKeyDown("space")) {
                 getWorld().addObject(new Bullet(), getX() + 50, getY());
-                if(rapidfire != null){
-                    bulletDelay = 10;
+                if(timer <= 200) {
+                    getWorld().addObject(new actorText(), getX() + 100, getY());
                 }
-                else if (rapidfire == null)
-                {
-                    bulletDelay = 100;
-                }
+                bulletDelay = 70;
+                
+                
             }
         }
         if (bulletDelay > 0) {

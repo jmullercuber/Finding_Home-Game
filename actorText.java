@@ -14,13 +14,8 @@ public class actorText extends Actor1
      */
     public void act() 
     {
-         
+        setImage(new GreenfootImage("Keep in mind that rounds take travelling 70 distance before they're fireable.", 20, Color.WHITE, Color.BLACK));
+        Greenfoot.delay(200);
         getWorld().removeObject(this);
     }    
-    public actorText()
-    {
-        setImage(new GreenfootImage("You are the only survivors of the wave. Only home knows the answers. Other survivors will join you if they lived to tell the tale.", 21, Color.WHITE, Color.BLACK));
-            Greenfoot.delay(200);
-           
-    }
 }
