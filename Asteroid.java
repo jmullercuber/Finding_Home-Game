@@ -33,9 +33,10 @@ public class Asteroid extends asteroidSuper
     public Asteroid()
     {
         GreenfootImage image = getImage();
-        //image.scale(image.getWidth() - 200, image.getHeight() - 200);
+        
         setImage(image);
-        rotateSpeed = Greenfoot.getRandomNumber(3);
+        rotateSpeed = Greenfoot.getRandomNumber(4);
+        asteroidSpeed = Greenfoot.getRandomNumber(4);
     }
 
     /**
@@ -43,7 +44,7 @@ public class Asteroid extends asteroidSuper
      */
     public void set()
     {
-        setLocation(getX() - asteroidSpeed, getY());
+        setLocation(getX() - (asteroidSpeed + 2), getY());
     }
 
     /**

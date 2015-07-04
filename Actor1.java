@@ -16,7 +16,7 @@ public class Actor1 extends Actor
     private int movingRight = 0;
     private int movingLeft = 0;
     //music timer.
-    public int timer = -0;
+    public int timer = 0;
     public int asteroidDelay = 1;
    //Rate of creating new asteroid. The lower int difficulty, the higher the rate of new asteroids.
     int difficulty = 10;
@@ -53,8 +53,10 @@ public class Actor1 extends Actor
         lose();
         
         engineStatus();
+        
+        
     }
-
+    
     /**
      * Allows the player to mute the current music playing if key m is pressed.
      */
@@ -81,6 +83,7 @@ public class Actor1 extends Actor
     /**
      * Plays the continuous background music.
      * Runs on hard timer, int timer. timer ++ included here.
+     * Adds initial NPC
      */
     public void playSongs()
     {
