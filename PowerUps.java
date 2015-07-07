@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PowerUps extends Actor
+public class PowerUps extends Actor1
 {
     public int moveSpeed = -4;
     /**

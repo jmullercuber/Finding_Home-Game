@@ -59,7 +59,11 @@ public class Explosion extends Actor
             increment = -increment;
             imageNo += increment;
         }
-        
+        Actor asteroid = getOneIntersectingObject(Asteroid.class);
+        if(asteroid != null){
+
+            getWorld().removeObject(asteroid);
+        }
         if(imageNo < 0) {
             getWorld().removeObject(this);
         }

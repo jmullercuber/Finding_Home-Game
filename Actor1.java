@@ -29,6 +29,9 @@ public class Actor1 extends Actor
 
     GreenfootSound sound3 = new GreenfootSound("3.wav");
     GreenfootSound sound4 = new GreenfootSound("4.wav");
+    
+    int bomb = 0;
+    int bombChance = 1;
 
     
     
@@ -38,8 +41,12 @@ public class Actor1 extends Actor
      */
     public void act()
     {
+        activateBomb();
+        
         movement();
-
+        
+        spawnBomb();
+        
         shoot();
 
         drift();
@@ -53,6 +60,14 @@ public class Actor1 extends Actor
         lose();
         
         engineStatus();
+        
+        
+        
+        timer = timer + 1;
+        
+        if(timer == 36590) {
+            sound4.play();
+        }
         
         
     }
@@ -92,11 +107,11 @@ public class Actor1 extends Actor
             
 
         }
-        if(timer <= 31080) {
-            sound3.play();
+        if(timer <= 30080) {
+            //sound3.play();
         }
-        timer ++;
-        if(timer == 31080) {
+        timer = timer + 1;
+        if(timer == 30080) {
             sound4.play();
         }
         
@@ -188,7 +203,26 @@ public class Actor1 extends Actor
         }
         moving = 0;
     }
-
+    public void activateBomb()
+    {
+        Actor haveBomb = getOneIntersectingObject(bombIcon.class);
+        if(haveBomb != null){
+            bomb = 1;
+        }
+        if(bomb == 1)
+        {
+            if(Greenfoot.isKeyDown("Q"))
+            {
+                getWorld().addObject(new Explosion(), getX(), getY());
+                bomb = 0;
+            }
+            if(Greenfoot.isKeyDown("E"))
+            {
+                getWorld().addObject(new Explosion(), getX(), getY());
+                bomb = 0;
+            }
+        }
+    }
     /**
      * If spacebar is pressed, new bullet is created and a delay is added for when the next bullet may be shot.
      * Rapidfire powerup code.
@@ -202,7 +236,7 @@ public class Actor1 extends Actor
                 if(timer <= 200) {
                     getWorld().addObject(new actorText(), getX() + 100, getY());
                 }
-                bulletDelay = 70;
+                bulletDelay = 60;
                 
                 
             }
@@ -243,7 +277,15 @@ public class Actor1 extends Actor
                 asteroidDelay = difficulty;
             }
         }
-    }    
+    }  
+    public void spawnBomb()
+    {
+        if(bombChance == 1)
+        {
+            getWorld().addObject(new bombIcon(), 1008, Greenfoot.getRandomNumber(850));
+        }
+        bombChance = Greenfoot.getRandomNumber(1200);
+    }
 
     /**
      * Creates new asteroid at random Y location.
