@@ -16,7 +16,8 @@ public class Play extends World
      */
     public Play()
     {
-        super(1008, 800, 1);
+        // Create a new world with 1008x630 cells with a cell size of 1x1 pixels.
+        super(1008, 630, 1);
         
         addObject(new Asteroid(), 1500, Greenfoot.getRandomNumber(800));
         addObject(new actorText2(), 50, 400 - 15);
