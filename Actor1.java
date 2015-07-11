@@ -9,7 +9,7 @@ import java.awt.Color;
 public class Actor1 extends Actor
 {
     protected int bulletDelay = 0;
-     //Denotes which direction the player is moving in.
+    //Denotes which direction the player is moving in.
     private int moving = 0;
     private int movingUp = 0;
     private int movingDown = 0;
@@ -18,7 +18,7 @@ public class Actor1 extends Actor
     //music timer.
     public int timer = 0;
     public int asteroidDelay = 1;
-   //Rate of creating new asteroid. The lower int difficulty, the higher the rate of new asteroids.
+    //Rate of creating new asteroid. The lower int difficulty, the higher the rate of new asteroids.
     int difficulty = 10;
     //The chance of a new NPC being created.
     private int chance;
@@ -27,14 +27,10 @@ public class Actor1 extends Actor
     //Souns for background music
     GreenfootSound sound = new GreenfootSound("1.wav");
 
-    GreenfootSound sound3 = new GreenfootSound("3.wav");
     GreenfootSound sound4 = new GreenfootSound("4.wav");
-    
     int bomb = 0;
     int bombChance = 1;
 
-    
-    
     /**
      * Act - do whatever the Actor1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -42,15 +38,15 @@ public class Actor1 extends Actor
     public void act()
     {
         activateBomb();
-        
+
         movement();
-        
+
         spawnBomb();
-        
+
         shoot();
 
         drift();
-        
+
         muteFunction();
 
         createAsteroid();
@@ -58,20 +54,34 @@ public class Actor1 extends Actor
         populateNPC();
 
         lose();
-        
+
         engineStatus();
-        
-        
-        
+
         timer = timer + 1;
-        
         if(timer == 36590) {
             sound4.play();
         }
-        
-        
+        radioTrans();
+
     }
-    
+
+    private void radioTrans()
+    {
+        Actor radio = getOneIntersectingObject(Radio.class);
+
+        if(radio != null){
+            if(timer == 15000){  
+                setImage(new GreenfootImage("", 21, Color.WHITE, Color.BLACK));
+            }
+            if(timer == 20000){  
+                setImage(new GreenfootImage("", 21, Color.WHITE, Color.BLACK));
+            }
+            if(timer == 30000){  
+                setImage(new GreenfootImage("", 21, Color.WHITE, Color.BLACK));
+            }
+        }
+    }
+
     /**
      * Allows the player to mute the current music playing if key m is pressed.
      */
@@ -86,15 +96,15 @@ public class Actor1 extends Actor
             mute = 1;
             sound.stop();
 
-            sound3.stop();
             sound4.stop();
-
         }
     }
+
     public Actor1()
     {
-        
+
     }
+
     /**
      * Plays the continuous background music.
      * Runs on hard timer, int timer. timer ++ included here.
@@ -104,17 +114,16 @@ public class Actor1 extends Actor
     {
         if(timer == 0)  {
             getWorld().addObject(new NPC(),getX() - Greenfoot.getRandomNumber(200) , getY() + Greenfoot.getRandomNumber(100) );
-            
 
         }
         if(timer <= 30080) {
-            //sound3.play();
+            sound.play();
         }
         timer = timer + 1;
         if(timer == 30080) {
+            sound.stop();
             sound4.play();
         }
-        
 
     }
 
@@ -124,26 +133,27 @@ public class Actor1 extends Actor
     public void lose()
     {
         Actor asteroid = getOneIntersectingObject(Asteroid.class);
+
         if(asteroid != null){
             sound.stop();
 
-            sound3.stop();
             sound4.stop();
-
             Greenfoot.setWorld(new lose());
         }
     }
+
     public void engineStatus()
     {
-         if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
-           {
-             setImage("Ship Engine On.png");
-           }
-         else
-         {
-             setImage("Ship Engine Off.png");
-         }
+        if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
+        {
+            setImage("Ship Engine On.png");
+        }
+        else
+        {
+            setImage("Ship Engine Off.png");
+        }
     }
+
     /**
      * Allows the player to use the WASD/arrow keys to move the ship.
      * Changes the ship image depending on direction the ship is moving.
@@ -203,26 +213,41 @@ public class Actor1 extends Actor
         }
         moving = 0;
     }
+
     public void activateBomb()
     {
         Actor haveBomb = getOneIntersectingObject(bombIcon.class);
         if(haveBomb != null){
-            bomb = 1;
+            bomb = bomb + 1;
+            if(timer <= 1000) {
+                getWorld().addObject(new bombText(),getX(), getY() +50 );
+
+            }
+            getWorld().removeObject(haveBomb);
         }
-        if(bomb == 1)
+        if(bomb >= 1)
         {
             if(Greenfoot.isKeyDown("Q"))
             {
+                getWorld().addObject(new Explosion(), getX(), getY() - 50);
+                getWorld().addObject(new Explosion(), getX() + 50, getY());
+                getWorld().addObject(new Explosion(), getX() - 50, getY());
+                getWorld().addObject(new Explosion(), getX(), getY() + 50);
                 getWorld().addObject(new Explosion(), getX(), getY());
-                bomb = 0;
+                bomb = bomb - 1;
             }
             if(Greenfoot.isKeyDown("E"))
             {
+                getWorld().addObject(new Explosion(), getX(), getY() - 50);
+                getWorld().addObject(new Explosion(), getX() + 50, getY());
+                getWorld().addObject(new Explosion(), getX() - 50, getY());
+                getWorld().addObject(new Explosion(), getX(), getY() + 50);
                 getWorld().addObject(new Explosion(), getX(), getY());
-                bomb = 0;
+                bomb = bomb - 1;
             }
         }
     }
+
     /**
      * If spacebar is pressed, new bullet is created and a delay is added for when the next bullet may be shot.
      * Rapidfire powerup code.
@@ -237,8 +262,7 @@ public class Actor1 extends Actor
                     getWorld().addObject(new actorText(), getX() + 100, getY());
                 }
                 bulletDelay = 60;
-                
-                
+
             }
         }
         if (bulletDelay > 0) {
@@ -278,6 +302,7 @@ public class Actor1 extends Actor
             }
         }
     }  
+
     public void spawnBomb()
     {
         if(bombChance == 1)
