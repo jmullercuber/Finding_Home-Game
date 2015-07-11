@@ -18,7 +18,7 @@ public class bombIcon extends PowerUps
         Edge();
         move(-2);
         if( timer <= 1000) {
-        inform();
+        //inform();
        } 
     }
     /**
@@ -37,6 +37,7 @@ public class bombIcon extends PowerUps
         Actor player = getOneIntersectingObject(Actor1.class);
         if( player != null) {
             getWorld().addObject(new bombText(),getX(), getY() );
+            Greenfoot.delay(10);
             getWorld().removeObject(this);
         }
     }

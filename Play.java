@@ -21,7 +21,7 @@ public class Play extends World
         addObject(new Asteroid(), 1500, Greenfoot.getRandomNumber(800));
         addObject(new actorText2(), 50, 400 - 15);
         addObject(new Actor1(), 50, 400);
-        
+        addObject(new bombIcon(), 500, 400);
         addObject(new Counter(), 189, 38);
         addObject(new asteroidSuper(), 0, 0);
         
