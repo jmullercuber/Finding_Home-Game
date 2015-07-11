@@ -17,10 +17,14 @@ public class Play extends World
     public Play()
     {
         super(1008, 800, 1);
-        addObject(new Asteroid(), 1500, Greenfoot.getRandomNumber(400));
+        
+        addObject(new Asteroid(), 1500, Greenfoot.getRandomNumber(800));
+        addObject(new actorText2(), 50, 400 - 15);
         addObject(new Actor1(), 50, 400);
         
         addObject(new Counter(), 189, 38);
+        addObject(new asteroidSuper(), 0, 0);
+        
     }
     
     public void act()

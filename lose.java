@@ -16,6 +16,6 @@ public class lose extends World
     public lose()
     {    
         super(1008, 800, 1); 
-        addObject(new playButton(), 485, 422);
+        addObject(new playAgainButton(), 485, 422);
     }
 }

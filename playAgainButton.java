@@ -6,14 +6,14 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class playButton extends Button
+public class playAgainButton extends Button
 {
     //GreenfootSound sound;
 
     GreenfootSound sound = new GreenfootSound("1.wav");
     int mute = 0;
     // Constructor
-    public playButton() {
+    public playAgainButton() {
         // continuously play the start screen music
 
         //sound.playLoop();
@@ -27,7 +27,7 @@ public class playButton extends Button
         if(Greenfoot.mouseClicked(this)){
             //tutorial not ready yet
             //Greenfoot.setWorld(new tutorialWorld());
-            Greenfoot.setWorld(new tutorialWorld());
+            Greenfoot.setWorld(new Play());
             sound.stop();
         }
         if(Greenfoot.isKeyDown("m")){

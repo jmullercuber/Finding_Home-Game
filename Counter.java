@@ -18,5 +18,11 @@ public class Counter extends Actor
     {
         setImage(new GreenfootImage("Distance From Home : " + distance, 32, Color.WHITE, Color.BLACK));
         distance = distance - 1;
+        if(distance <= 0) {
+            Greenfoot.setWorld(new Win());
+        }
+        else {
+            distance = distance - 1;
+        }
     }    
 }
