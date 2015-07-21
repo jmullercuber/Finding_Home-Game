@@ -53,7 +53,7 @@ public class Actor1 extends Actor
 
         populateNPC();
 
-        lose();
+        //lose();
 
         engineStatus();
 
@@ -67,19 +67,12 @@ public class Actor1 extends Actor
 
     private void radioTrans()
     {
-        Actor radio = getOneIntersectingObject(Radio.class);
-
-        if(radio != null){
-            if(timer == 15000){  
-                setImage(new GreenfootImage("", 21, Color.WHITE, Color.BLACK));
-            }
-            if(timer == 20000){  
-                setImage(new GreenfootImage("", 21, Color.WHITE, Color.BLACK));
-            }
-            if(timer == 30000){  
-                setImage(new GreenfootImage("", 21, Color.WHITE, Color.BLACK));
-            }
+        if(timer == 15000){
+            getWorld().addObject(new Radio(), 1008, 400);
         }
+        if(timer == 23000){  
+                getWorld().addObject(new Patrol(), 1008, 400);
+            }
     }
 
     /**
@@ -229,21 +222,23 @@ public class Actor1 extends Actor
         {
             if(Greenfoot.isKeyDown("Q"))
             {
+                bomb = bomb - 1;
                 getWorld().addObject(new Explosion(), getX(), getY() - 50);
                 getWorld().addObject(new Explosion(), getX() + 50, getY());
                 getWorld().addObject(new Explosion(), getX() - 50, getY());
                 getWorld().addObject(new Explosion(), getX(), getY() + 50);
                 getWorld().addObject(new Explosion(), getX(), getY());
-                bomb = bomb - 1;
+                
             }
             if(Greenfoot.isKeyDown("E"))
             {
+                bomb = bomb - 1;
                 getWorld().addObject(new Explosion(), getX(), getY() - 50);
                 getWorld().addObject(new Explosion(), getX() + 50, getY());
                 getWorld().addObject(new Explosion(), getX() - 50, getY());
                 getWorld().addObject(new Explosion(), getX(), getY() + 50);
                 getWorld().addObject(new Explosion(), getX(), getY());
-                bomb = bomb - 1;
+                
             }
         }
     }

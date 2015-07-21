@@ -10,7 +10,7 @@ public class bombText extends bombIcon
 {
     public bombText()
     {
-        setImage(new GreenfootImage("Press Q or E to activate the bomb.", 21, Color.WHITE, Color.BLACK));
+        setImage(new GreenfootImage("Press Q or E to activate the bomb. Your ship can only have 1", 21, Color.WHITE, Color.BLACK));
         
     }
     /**

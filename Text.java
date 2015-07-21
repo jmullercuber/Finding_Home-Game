@@ -119,7 +119,7 @@ public class Text extends NPC
             setImage(new GreenfootImage("Sanders", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 31){
-            setImage(new GreenfootImage("Clinton", 12, Color.WHITE, Color.BLACK));
+            setImage(new GreenfootImage("Ryan", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 41){
             setImage(new GreenfootImage("Trump", 12, Color.WHITE, Color.BLACK));
@@ -140,7 +140,7 @@ public class Text extends NPC
             setImage(new GreenfootImage("Biden", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 38){
-            setImage(new GreenfootImage("Barack", 12, Color.WHITE, Color.BLACK));
+            setImage(new GreenfootImage("Austin", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 39){
             setImage(new GreenfootImage("Chafee", 12, Color.WHITE, Color.BLACK));
@@ -158,7 +158,7 @@ public class Text extends NPC
             setImage(new GreenfootImage("Carson", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 45){
-            setImage(new GreenfootImage("Cruz Sux", 12, Color.WHITE, Color.BLACK));
+            setImage(new GreenfootImage("Adams", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 46){
             setImage(new GreenfootImage("Everson", 12, Color.WHITE, Color.BLACK));
@@ -185,7 +185,7 @@ public class Text extends NPC
             setImage(new GreenfootImage("X", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 52){
-            setImage(new GreenfootImage("GOAT", 12, Color.WHITE, Color.BLACK));
+            setImage(new GreenfootImage("Roi", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 55){
             setImage(new GreenfootImage("Amour", 12, Color.WHITE, Color.BLACK));
@@ -194,10 +194,10 @@ public class Text extends NPC
             setImage(new GreenfootImage("Caesar", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 56){
-            setImage(new GreenfootImage("$5 Footlong", 12, Color.WHITE, Color.BLACK));
+            setImage(new GreenfootImage("Lin", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 57){
-            setImage(new GreenfootImage("Insert Name Here", 12, Color.WHITE, Color.BLACK));
+            setImage(new GreenfootImage("Joyce", 12, Color.WHITE, Color.BLACK));
         }
         if(name == 58){
             setImage(new GreenfootImage("Oboey", 12, Color.WHITE, Color.BLACK));
