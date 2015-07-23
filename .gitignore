@@ -9,7 +9,7 @@ sounds/*
 
 # Don't update the project.greenfoot EVERY time!
 # Clutters up git too much 
-project.greenfoot
+*.greenfoot
 
 # Generated Documentation
 doc/
