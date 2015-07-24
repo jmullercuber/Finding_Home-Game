@@ -24,7 +24,8 @@ public class Play extends World
         addObject(new Actor1(), 50, 400);
         addObject(new bombIcon(), 500, 400);
         addObject(new Counter(), 189, 38);
-        addObject(new asteroidSuper(), 0, 0);
+        //addObject(new asteroidSuper(), 0, 0);
+        Explosion.initialiseImages();
         
     }
     

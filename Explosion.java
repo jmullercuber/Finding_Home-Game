@@ -27,15 +27,15 @@ public class Explosion extends Actor
     private int increment=1;    
     
     public Explosion() {
-        initialiseImages();
+        //initialiseImages();
         setImage(images[0]);        
-        
     }    
     
     /** 
      * Create the images for explosion.
      */
-    public synchronized static void initialiseImages() {
+    //public synchronized static void initialiseImages() {
+    public static void initialiseImages() {
         if(images == null) {
             GreenfootImage baseImage = new GreenfootImage("ledakan_2.png");
             images = new GreenfootImage[IMAGE_COUNT];
@@ -61,7 +61,7 @@ public class Explosion extends Actor
         }
         Actor asteroid = getOneIntersectingObject(Asteroid.class);
         if (asteroid != null) {
-            getWorld().removeObject(asteroid);
+            ((Asteroid)asteroid).breakUp();
         }
         if (imageNo < 0) {
             getWorld().removeObject(this);
