@@ -71,8 +71,8 @@ public class Actor1 extends Actor
             getWorld().addObject(new Radio(), 1008, 400);
         }
         if(timer == 23000){  
-                getWorld().addObject(new Patrol(), 1008, 400);
-            }
+            getWorld().addObject(new Patrol(), 1008, 400);
+        }
     }
 
     /**

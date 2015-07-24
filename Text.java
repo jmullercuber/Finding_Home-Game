@@ -99,7 +99,7 @@ public class Text extends NPC
     }
     
     public void generateName(){
-        int rand = Greenfoot.getRandomNumber(70);
+        int rand = Greenfoot.getRandomNumber(names.length);
         setImage(new GreenfootImage(names[rand], 12, Color.WHITE, Color.BLACK));
     }
 }

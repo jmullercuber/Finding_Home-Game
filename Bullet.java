@@ -15,9 +15,11 @@ public class Bullet extends Actor
      */
     public void act() 
     {
-        temporaryRemoveAsteroidVoid();
-        move(20);
-        //checkEdge();
+        if (!checkAsteroid()) {
+            move();
+            checkEdge();
+        }
+        //move(20);
     }
 
     private void move()
@@ -25,27 +27,26 @@ public class Bullet extends Actor
         setLocation(getX() + 20, getY());
     }
 
-    public void checkEdge()
+    public boolean checkEdge()
     {
         // if at the world edge, remove
         if (getX() >= 1000) {
             getWorld().removeObject(this);
+            return true;
         }
+        return false;
     }
 
-    public void temporaryRemoveAsteroidVoid()
+    public boolean checkAsteroid()
     {
         // if touching an asteroid, break asteroid and remove self
         // only one asteriod can be broken per bullet
         Actor asteroid = getOneIntersectingObject(Asteroid.class);
         if (asteroid != null){
-            getWorld().removeObject(asteroid);
+            ((Asteroid)asteroid).breakUp();
             getWorld().removeObject(this);
+            return true;
         }
-        else
-        {
-            move();
-            checkEdge();
-        }
+        return false;
     }
 }

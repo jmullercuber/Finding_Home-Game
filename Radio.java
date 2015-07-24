@@ -14,10 +14,12 @@ public class Radio extends PowerUps
      */
     public void act() 
     {
-        removeAtEdge();
-        move(-2);
-        touched();
-    }   
+        if (!removeAtEdge()) {
+           move(-2);
+           touched();
+        }
+    }
+    
     public void touched()
     {
         Actor radio = getOneIntersectingObject(Actor1.class);

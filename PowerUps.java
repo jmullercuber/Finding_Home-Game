@@ -18,13 +18,13 @@ public class PowerUps extends Actor1
         // Add your action code here.
     }    
 
-    public void removeAtEdge()
+    public boolean removeAtEdge()
     {
+        if(getX() <= 0)
         {
-            if(getX() <= 0)
-            {
-                getWorld().removeObject(this);
-            }
+            getWorld().removeObject(this);
+            return true;
         }
+        return false;
     }
 }
