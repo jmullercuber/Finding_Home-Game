@@ -25,7 +25,8 @@ public class Asteroid extends asteroidSuper
         size = sz;
         rotateSpeed = Greenfoot.getRandomNumber(4);
         asteroidSpeed = Greenfoot.getRandomNumber(4);
-        setImage(size + ".png");
+        GreenfootImage image = new GreenfootImage(size + ".png");
+        setImage(image);
     }
 
     /**

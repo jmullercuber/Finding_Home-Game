@@ -10,6 +10,10 @@ public class bombText extends Text
 {
     public bombText()
     {
-        super("Press Q or E to activate the bomb. Your ship can only have 1", 21, 75);
+        super(
+            "Press Q or E to activate the bomb. Your ship can only have 1",
+            21,
+            75
+        );
     }
 }
