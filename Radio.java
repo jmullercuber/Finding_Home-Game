@@ -8,29 +8,19 @@ import java.awt.Color;
  */
 public class Radio extends PowerUps
 {
-    /**
-     * Act - do whatever the Radio wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        if (!removeAtEdge()) {
-           move(-2);
-           touched();
-        }
+    public Radio() {
+        super(-2);
+        setImage("Ship Engine Off.png");
     }
     
     public void touched()
     {
-        Actor radio = getOneIntersectingObject(Actor1.class);
+        Actor player = getOneIntersectingObject(Actor1.class);
         
-        if(radio != null) {
+        if(player != null) {
             setImage(new GreenfootImage("Captain's Log 527: Patrol 784 lost in the asteroid. Last transmission 'The rocks aren't the only thing here'", 21, Color.WHITE, Color.BLACK));
             Greenfoot.delay(300);
             getWorld().removeObject(this);
         }
     }
-   
-    
-    
 }

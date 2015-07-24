@@ -28,9 +28,9 @@ public class Win extends World
      */
     private void prepare()
     {
-        PowerUps powerups = new PowerUps();
+        PowerUps powerups = new Radio();
         addObject(powerups, 241, 252);
-        PowerUps powerups2 = new PowerUps();
+        PowerUps powerups2 = new bombIcon();
         addObject(powerups2, 189, 298);
     }
 }
