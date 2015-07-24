@@ -74,9 +74,9 @@ public class NPC extends Actor
     public void engineStatus()
     {
          if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
-           {
+         {
              setImage("Ship Engine On.png");
-           }
+         }
          else
          {
              setImage("Ship Engine Off.png");
@@ -84,7 +84,7 @@ public class NPC extends Actor
     }
     public void movement()
     {
-        if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
+        if ( (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && !(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) )
         {
             setLocation(getX() + 2, getY());
             //setImage("Ship Engine On.png");
@@ -98,7 +98,7 @@ public class NPC extends Actor
             movinLeft = 0;
             //change image to Engine On, else Engine Off
         }
-        if ( Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a") )
+        else if ( (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && !(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) )
         {
             setLocation(getX() - 2, getY());
             //setImage("Ship Engine Off.png");
@@ -110,7 +110,7 @@ public class NPC extends Actor
             movinDown = 0;
             movinRight = 0;
         }
-        if ( Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w") )
+        if ( (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) && !(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) )
         {
             setLocation(getX(), getY() - 2);
             movin = 1;
@@ -119,7 +119,7 @@ public class NPC extends Actor
             movinDown = 0;
             movinRight = 0;
         }
-        if ( Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s") )
+        else if ( (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) && !(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) )
         {
             setLocation(getX(), getY() + 2);
             movin = 1;
@@ -166,18 +166,12 @@ public class NPC extends Actor
         if(name == 10){
             setImage(new GreenfootImage("Home, now Forever distant.", 20, Color.WHITE, Color.BLACK));
         }
-
-       
     }
 
     /**
      * The NPC ship needs to be able to move on its own according to where the asteroids are around it
      * Basically it can't move randomllu, it has to be somewhat smart about it.
      */
-    
-       
-    
-
     public void npcshoot()
     {
         if (bulletDelay == 0) {
@@ -189,8 +183,5 @@ public class NPC extends Actor
         if (bulletDelay > 0) {
             bulletDelay --;
         }
-
     }
-
-    
 }

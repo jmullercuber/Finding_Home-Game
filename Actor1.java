@@ -153,7 +153,7 @@ public class Actor1 extends Actor
      */
     public void movement()
     {
-        if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
+        if ( (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && !(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) )
         {
             setLocation(getX() + 2, getY());
             //setImage("Ship Engine On.png");
@@ -167,7 +167,7 @@ public class Actor1 extends Actor
             movingLeft = 0;
             //change image to Engine On, else Engine Off
         }
-        if ( Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a") )
+        else if ( (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && !(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) )
         {
             setLocation(getX() - 2, getY());
             //setImage("Ship Engine Off.png");
@@ -179,7 +179,7 @@ public class Actor1 extends Actor
             movingDown = 0;
             movingRight = 0;
         }
-        if ( Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w") )
+        if ( (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) && !(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) )
         {
             setLocation(getX(), getY() - 2);
             moving = 1;
@@ -188,7 +188,7 @@ public class Actor1 extends Actor
             movingDown = 0;
             movingRight = 0;
         }
-        if ( Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s") )
+        else if ( (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) && !(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) )
         {
             setLocation(getX(), getY() + 2);
             moving = 1;
@@ -220,7 +220,7 @@ public class Actor1 extends Actor
         }
         if(bomb >= 1)
         {
-            if(Greenfoot.isKeyDown("Q"))
+            if(Greenfoot.isKeyDown("Q") || Greenfoot.isKeyDown("E"))
             {
                 bomb = bomb - 1;
                 getWorld().addObject(new Explosion(), getX(), getY() - 50);
@@ -228,17 +228,6 @@ public class Actor1 extends Actor
                 getWorld().addObject(new Explosion(), getX() - 50, getY());
                 getWorld().addObject(new Explosion(), getX(), getY() + 50);
                 getWorld().addObject(new Explosion(), getX(), getY());
-                
-            }
-            if(Greenfoot.isKeyDown("E"))
-            {
-                bomb = bomb - 1;
-                getWorld().addObject(new Explosion(), getX(), getY() - 50);
-                getWorld().addObject(new Explosion(), getX() + 50, getY());
-                getWorld().addObject(new Explosion(), getX() - 50, getY());
-                getWorld().addObject(new Explosion(), getX(), getY() + 50);
-                getWorld().addObject(new Explosion(), getX(), getY());
-                
             }
         }
     }
