@@ -12,12 +12,5 @@ public class creditsButton extends Button
     {
         Greenfoot.setWorld(Credits.credits);
     }
-    public void act() 
-    {
-        if(Greenfoot.mouseClicked(this)){
-            Greenfoot.setWorld(new Credits());
-            
-        }
-    }   
 }
 

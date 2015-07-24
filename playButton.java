@@ -21,14 +21,9 @@ public class playButton extends Button
 
     public void act()
     {
+        super.act();
         if (mute == 0){
             sound.play();
-        }
-        if(Greenfoot.mouseClicked(this)){
-            //tutorial not ready yet
-            //Greenfoot.setWorld(new tutorialWorld());
-            Greenfoot.setWorld(new tutorialWorld());
-            sound.stop();
         }
         if(Greenfoot.isKeyDown("m")){
             mute = 1;
@@ -36,9 +31,11 @@ public class playButton extends Button
 
         }
     }
-    //public void onClick()
-    // {
-    //     Greenfoot.setWorld(Play.play);
-    //      sound.stop();
-    // }
+    public void onClick()
+    {
+        //tutorial not ready yet
+        //Greenfoot.setWorld(new tutorialWorld());
+        Greenfoot.setWorld(new tutorialWorld());
+        sound.stop();
+    }
 }
