@@ -7,19 +7,27 @@ import java.awt.Color;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Counter extends Actor
+public abstract class Counter extends Actor
 {
-    public int distance = 39090;
+    protected String text;
+    protected int count;
+    
+    protected Counter(String txt, int c) {
+        text = txt;
+        count = c;
+    }
+    
     /**
      * Act - do whatever the Counter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act() 
+    public void act()
     {
-        setImage(new GreenfootImage("Distance From Home : " + distance, 32, Color.WHITE, Color.BLACK));
-        distance -= 1;
-        if(distance <= 0) {
-            Greenfoot.setWorld(new Win());
-        }
-    }    
+        setImage(new GreenfootImage(text + count, 32, Color.WHITE, Color.BLACK));
+    }
+    
+    public int increment(int change) {
+        count += change;
+        return count;
+    }
 }

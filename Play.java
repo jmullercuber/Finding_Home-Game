@@ -32,7 +32,8 @@ public class Play extends World
         player = new Actor1();
         addObject(player, 50, 400);
         addObject(new bombIcon(), 500, 400);
-        addObject(new Counter(), 189, 38);
+        addObject(new DistanceCounter(), 189, 38);
+        addObject(new PointCounter(), 76, 81);
         //addObject(new asteroidSuper(), 0, 0);
         Explosion.initialiseImages();
         
