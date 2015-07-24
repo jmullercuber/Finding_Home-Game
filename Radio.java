@@ -20,14 +20,12 @@ public class Radio extends PowerUps
     }   
     public void touched()
     {
-            Actor radio = getOneIntersectingObject(Actor1.class);
-
-
-        if(radio != null){
-                
-                setImage(new GreenfootImage("Captain's Log 527: Patrol 784 lost in the asteroid. Last transmission 'The rocks aren't the only thing here'", 21, Color.WHITE, Color.BLACK));
-                Greenfoot.delay(300);
-                getWorld().removeObject(this);
+        Actor radio = getOneIntersectingObject(Actor1.class);
+        
+        if(radio != null) {
+            setImage(new GreenfootImage("Captain's Log 527: Patrol 784 lost in the asteroid. Last transmission 'The rocks aren't the only thing here'", 21, Color.WHITE, Color.BLACK));
+            Greenfoot.delay(300);
+            getWorld().removeObject(this);
         }
     }
    

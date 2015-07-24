@@ -15,25 +15,16 @@ public class actorText extends Actor1
     public void act() 
     {
         fireInfo();
-        
-    }    
-    public void fireInfo()
-    {
-        
-        if (Greenfoot.isKeyDown("space")) {
-                
-                if(timer <= 200) {
-                    setImage(new GreenfootImage("Keep in mind that rounds take travelling 70 distance before they're fireable again.", 20, Color.WHITE, Color.BLACK));
-                    Greenfoot.delay(200);
-                    getWorld().removeObject(this);
-                    
-                    
-                    
-                }
-                
-                
-                
-            }
     }
     
+    public void fireInfo()
+    {
+        if (Greenfoot.isKeyDown("space")) {
+            if(timer <= 200) {
+                setImage(new GreenfootImage("Keep in mind that rounds take travelling 70 distance before they're fireable again.", 20, Color.WHITE, Color.BLACK));
+                Greenfoot.delay(200);
+                getWorld().removeObject(this);
+            }
+        }
+    }
 }

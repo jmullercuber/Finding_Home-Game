@@ -30,6 +30,6 @@ public class asteroidSuper extends Actor
         if( timer == 5000) {
             asteroidSpeed = 6;
         }
-        timer = timer - 1;
+        timer += 1;
     }    
 }

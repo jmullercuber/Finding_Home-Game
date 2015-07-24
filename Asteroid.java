@@ -14,35 +14,31 @@ public class Asteroid extends asteroidSuper
     public int a = 0;
     public int rotateSpeed;
 
+    public Asteroid()
+    {
+        setImage( getImage() );
+        rotateSpeed = Greenfoot.getRandomNumber(4);
+        asteroidSpeed = Greenfoot.getRandomNumber(4);
+    }
+
     /**
      * Act - do whatever the Asteroid wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        set();
-        Edge();
-        
+        move();
+        checkEdge();
         
         // slowly rotate counter-clockwise
         turn(-rotateSpeed);
         a = Greenfoot.getRandomNumber(4);
-        
-    }
-
-    public Asteroid()
-    {
-        GreenfootImage image = getImage();
-        
-        setImage(image);
-        rotateSpeed = Greenfoot.getRandomNumber(4);
-        asteroidSpeed = Greenfoot.getRandomNumber(4);
     }
 
     /**
      * This moves the object across screen. Speed can change by level. Base speed -3.
      */
-    public void set()
+    public void move()
     {
         setLocation(getX() - (asteroidSpeed + 2), getY());
     }
@@ -50,12 +46,10 @@ public class Asteroid extends asteroidSuper
     /**
      * Removes object at screen's edge. asteroidDelay changes by level also to add difficulty.
      */
-    public void Edge()
+    public void checkEdge()
     {
-        if(getX() <= 0)
-        {
+        if (getX() <= 0) {
             getWorld().removeObject(this);
-            
         }
     }
     

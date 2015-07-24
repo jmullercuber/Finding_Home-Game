@@ -21,6 +21,5 @@ public class Patrol extends NPC
             setLocation(getX() - 1, getY());
             turn(-1);
         }
-        
     }    
 }

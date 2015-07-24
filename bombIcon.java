@@ -8,34 +8,32 @@ import greenfoot.*;
  */
 public class bombIcon extends PowerUps
 {
-    
     /**
      * Act - do whatever the BombIcon wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        Edge();
+        checkEdge();
         move(-2);
         if( timer <= 1000) {
-        //inform();
-       } 
+            //inform();
+        } 
     }
     /**
      * Removes object at screen's edge. asteroidDelay changes by level also to add difficulty.
      */
-    public void Edge()
+    public void checkEdge()
     {
-        if(getX() <= 0)
+        if (getX() <= 0)
         {
             getWorld().removeObject(this);
-            
         }
     }
     public void inform()
     {
         Actor player = getOneIntersectingObject(Actor1.class);
-        if( player != null) {
+        if (player != null) {
             getWorld().addObject(new bombText(),getX(), getY() );
             Greenfoot.delay(10);
             getWorld().removeObject(this);
