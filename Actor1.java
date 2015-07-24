@@ -11,10 +11,10 @@ public class Actor1 extends Actor
     protected int bulletDelay = 0;
     //Denotes which direction the player is moving in.
     private int moving = 0;
-    private int movingUp = 0;
-    private int movingDown = 0;
-    private int movingRight = 0;
-    private int movingLeft = 0;
+    private boolean movingUp = false;
+    private boolean movingDown = false;
+    private boolean movingRight = false;
+    private boolean movingLeft = false;
     //music timer.
     public int timer = 0;
     public int asteroidDelay = 1;
@@ -22,8 +22,8 @@ public class Actor1 extends Actor
     int difficulty = 10;
     //The chance of a new NPC being created.
     private int chance;
-    //Whether or not mute is on or not. mute off = 0, mute on = 1.
-    private int mute = 0;
+    //Whether or not mute is on or not. mute off = false, mute on = true.
+    private boolean mute = false;
     //Souns for background music
     GreenfootSound sound = new GreenfootSound("1.wav");
 
@@ -38,26 +38,17 @@ public class Actor1 extends Actor
     public void act()
     {
         activateBomb();
-
         movement();
-
         spawnBomb();
-
         shoot();
-
         drift();
-
         muteFunction();
-
         createAsteroid();
-
         populateNPC();
-
         //lose();
-
         engineStatus();
 
-        timer = timer + 1;
+        timer += 1;
         if(timer == 36590) {
             sound4.play();
         }
@@ -80,16 +71,18 @@ public class Actor1 extends Actor
      */
     public void muteFunction()
     {
-        if(mute == 0)  
-        {
-
-            playSongs();
-        }
-        if(Greenfoot.isKeyDown("m")){
-            mute = 1;
-            sound.stop();
-
-            sound4.stop();
+        if (Greenfoot.isKeyDown("m")) {
+            if (mute == true) {
+                // crank the dial to the right
+                playSongs();
+            }
+            else {  // mute is currently false
+                // digging the quiet solitude
+                sound.stop();
+                sound4.stop();
+            }
+            // invert the value
+            mute = !mute;
         }
     }
 
@@ -107,17 +100,14 @@ public class Actor1 extends Actor
     {
         if(timer == 0)  {
             getWorld().addObject(new NPC(),getX() - Greenfoot.getRandomNumber(200) , getY() + Greenfoot.getRandomNumber(100) );
-
         }
         if(timer <= 30080) {
             sound.play();
         }
-        timer = timer + 1;
         if(timer == 30080) {
             sound.stop();
             sound4.play();
         }
-
     }
 
     /**
@@ -129,7 +119,6 @@ public class Actor1 extends Actor
 
         if(asteroid != null){
             sound.stop();
-
             sound4.stop();
             Greenfoot.setWorld(new lose());
         }
@@ -161,10 +150,8 @@ public class Actor1 extends Actor
             //image.scale(image.getWidth() - 350, image.getHeight() - 60);
             setImage(image);
             moving = 1;
-            movingRight = 1;
-            movingUp = 0;
-            movingDown = 0;
-            movingLeft = 0;
+            movingRight = true;
+            movingUp = movingDown = movingLeft = false;
             //change image to Engine On, else Engine Off
         }
         else if ( (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) && !(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) )
@@ -174,35 +161,28 @@ public class Actor1 extends Actor
             GreenfootImage image = getImage();
             //image.scale(image.getWidth() - 260, image.getHeight() - 53);
             setImage(image);
-            movingLeft = 1;
-            movingUp = 0;
-            movingDown = 0;
-            movingRight = 0;
+            movingLeft = true;
+            movingUp = movingDown = movingRight = false;
         }
         if ( (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) && !(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) )
         {
             setLocation(getX(), getY() - 2);
             moving = 1;
-            movingUp = 1;
-            movingLeft = 0;
-            movingDown = 0;
-            movingRight = 0;
+            movingUp = true;
+            movingLeft = movingDown = movingRight = false;
         }
         else if ( (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) && !(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) )
         {
             setLocation(getX(), getY() + 2);
             moving = 1;
-            movingDown = 1;
-            movingUp = 0;
-            movingLeft = 0;
-            movingRight = 0;
+            movingDown = true;
+            movingUp = movingLeft = movingRight = false;
         }
         if (moving == 0) {
             //setImage("Ship Engine Off.png");
             GreenfootImage image = getImage();
             //image.scale(image.getWidth() - 260, image.getHeight() - 53);
             setImage(image);
-
         }
         moving = 0;
     }
@@ -211,10 +191,9 @@ public class Actor1 extends Actor
     {
         Actor haveBomb = getOneIntersectingObject(bombIcon.class);
         if(haveBomb != null){
-            bomb = bomb + 1;
+            bomb += 1;
             if(timer <= 1000) {
                 getWorld().addObject(new bombText(),getX(), getY() +50 );
-
             }
             getWorld().removeObject(haveBomb);
         }
@@ -222,7 +201,7 @@ public class Actor1 extends Actor
         {
             if(Greenfoot.isKeyDown("Q") || Greenfoot.isKeyDown("E"))
             {
-                bomb = bomb - 1;
+                bomb -= 1;
                 getWorld().addObject(new Explosion(), getX(), getY() - 50);
                 getWorld().addObject(new Explosion(), getX() + 50, getY());
                 getWorld().addObject(new Explosion(), getX() - 50, getY());
@@ -238,7 +217,6 @@ public class Actor1 extends Actor
      */
     public void shoot()
     {
-
         if (bulletDelay == 0) {
             if (Greenfoot.isKeyDown("space")) {
                 getWorld().addObject(new Bullet(), getX() + 50, getY());
@@ -246,7 +224,6 @@ public class Actor1 extends Actor
                     getWorld().addObject(new actorText(), getX() + 100, getY());
                 }
                 bulletDelay = 60;
-
             }
         }
         if (bulletDelay > 0) {
@@ -259,16 +236,16 @@ public class Actor1 extends Actor
      */
     public void drift()
     {
-        if (movingUp == 1) {
+        if (movingUp && !movingDown) {
             setLocation(getX(), getY() - 1);
         }
-        if (movingDown == 1) {
+        else if (movingDown && !movingUp) {
             setLocation(getX(), getY() + 1);
         }
-        if (movingRight == 1) {
+        else if (movingRight && !movingLeft) {
             setLocation(getX() + 1, getY());
         }
-        if (movingLeft == 1) {
+        else if (movingLeft && !movingRight) {
             setLocation(getX() - 1, getY());
         }
     }
