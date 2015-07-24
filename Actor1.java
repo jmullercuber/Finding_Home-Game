@@ -17,11 +17,6 @@ public class Actor1 extends Actor
     private boolean movingLeft = false;
     //music timer.
     public int timer = 0;
-    public int asteroidDelay = 1;
-    //Rate of creating new asteroid. The lower int difficulty, the higher the rate of new asteroids.
-    int difficulty = 10;
-    //The chance of a new NPC being created.
-    private int chance;
     //Whether or not mute is on or not. mute off = false, mute on = true.
     private boolean mute = false;
     //Souns for background music
@@ -29,7 +24,6 @@ public class Actor1 extends Actor
 
     GreenfootSound sound4 = new GreenfootSound("4.wav");
     int bomb = 0;
-    int bombChance = 1;
 
     /**
      * Act - do whatever the Actor1 wants to do. This method is called whenever
@@ -39,30 +33,15 @@ public class Actor1 extends Actor
     {
         activateBomb();
         movement();
-        spawnBomb();
         shoot();
         drift();
         muteFunction();
-        createAsteroid();
-        populateNPC();
         //lose();
         engineStatus();
 
         timer += 1;
         if(timer == 36590) {
             sound4.play();
-        }
-        radioTrans();
-
-    }
-
-    private void radioTrans()
-    {
-        if(timer == 15000){
-            getWorld().addObject(new Radio(), 1008, 400);
-        }
-        if(timer == 23000){  
-            getWorld().addObject(new Patrol(), 1008, 400);
         }
     }
 
@@ -248,48 +227,5 @@ public class Actor1 extends Actor
         else if (movingLeft && !movingRight) {
             setLocation(getX() - 1, getY());
         }
-    }
-
-    /** 
-     * Decides when to create asteroids. Rate of creation dependent on int difficulty.
-     */
-    public void createAsteroid()
-    {
-        if(asteroidDelay > 0){
-            asteroidDelay--;
-            if (asteroidDelay == 0) {
-                populate();
-                asteroidDelay = difficulty;
-            }
-        }
-    }  
-
-    public void spawnBomb()
-    {
-        if(bombChance == 1)
-        {
-            getWorld().addObject(new bombIcon(), 1008, Greenfoot.getRandomNumber(850));
-        }
-        bombChance = Greenfoot.getRandomNumber(1200);
-    }
-
-    /**
-     * Creates new asteroid at random Y location.
-     */
-    public void populate()
-    {
-        getWorld().addObject(new Asteroid(), 1008, Greenfoot.getRandomNumber(850));
-    }
-
-    /**
-     * Creates new NPC/ Probability of new NPC.
-     */
-    public void populateNPC()
-    {
-        chance = Greenfoot.getRandomNumber(10000);
-        if( chance == 1 ){
-            getWorld().addObject(new NPC(),getX() - Greenfoot.getRandomNumber(200) , getY() + Greenfoot.getRandomNumber(100) );
-        }
-
     }
 }
