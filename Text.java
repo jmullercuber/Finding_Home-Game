@@ -7,81 +7,14 @@ import java.awt.Color;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Text extends NPC
+public abstract class Text extends Actor
 {
-    static String[] names = {
-        "Snoop",
-        "Bob",
-        "Jim",
-        "Joey",
-        "Ian",
-        "Steff",
-        "Victor",
-        "Zahir",
-        "Lena",
-        "Greagory",
-        "Corelli",
-        "John",
-        "Thomas",
-        "Anthony",
-        "Leo",
-        "Lena",
-        "Berns",
-        "Michael",
-        "Richard",
-        "Daniel",
-        "George",
-        "Steven",
-        "David",
-        "Jared",
-        "Eric",
-        "Jordan",
-        "Mary",
-        "Maria",
-        "Deborah",
-        "Hillary",
-        "Bush",
-        "Ryan",
-        "Donald",
-        "Sanders",
-        "Jeb",
-        "Christie",
-        "Chris",
-        "Biden",
-        "Austin",
-        "Chafee",
-        "O'Malley",
-        "Trump",
-        "Webb",
-        "Martin",
-        "Carson",
-        "Adams",
-        "Everson",
-        "Graham",
-        "Huck",
-        "King",
-        "Caesar",
-        "Marcus",
-        "Roi",
-        "PK Thunder",
-        "X",
-        "Amour",
-        "Lin",
-        "Joyce",
-        "Oboey",
-        "Robbie",
-        "Lindsey",
-        "Jared",
-        "Hailey",
-        "Ryssa",
-        "Ren",
-        "Jalen",
-        "Hamrick",
-        "Eliza",
-        "Jay",
-        "Bennish",
-        "Jones"
-    };
+    int delay;
+    // Constructor
+    public Text(String message, int sz, int dely) {
+        setImage(new GreenfootImage(message, sz, Color.WHITE, Color.BLACK));
+        this.delay = dely;
+    }
     
     /**
      * Act - do whatever the Text wants to do. This method is called whenever
@@ -89,17 +22,7 @@ public class Text extends NPC
      */
     public void act() 
     {
-        movement();
-        drift();
-    }
-    
-    public Text()
-    {
-        generateName();
-    }
-    
-    public void generateName(){
-        int rand = Greenfoot.getRandomNumber(names.length);
-        setImage(new GreenfootImage(names[rand], 12, Color.WHITE, Color.BLACK));
-    }
+        Greenfoot.delay(this.delay);
+        getWorld().removeObject(this);
+    }    
 }

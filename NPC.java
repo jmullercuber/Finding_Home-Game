@@ -41,7 +41,7 @@ public class NPC extends Actor
             getWorld().removeObject(this);
         }
         if(a == 0) {
-            getWorld().addObject(new Text(), getX(), getY() - 15);
+            getWorld().addObject(new NPCText(), getX(), getY() - 15);
             a = 1;
         }
     }    
