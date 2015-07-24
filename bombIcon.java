@@ -15,11 +15,12 @@ public class bombIcon extends PowerUps
     
     public void touched()
     {
-        if( ((Play)getWorld()).player.timer <= 1000) {
-            Actor player = getOneIntersectingObject(Actor1.class);
-            if (player != null) {
-                getWorld().addObject(new bombText(),getX(), getY() );
-                Greenfoot.delay(10);
+        Actor obj = getOneIntersectingObject(Actor1.class);
+        if (obj != null) {
+            Actor1 player = ((Actor1)obj);
+            player.bomb += 1;
+            if (player.timer <= 1000) { 
+                getWorld().addObject(new bombText(), player.getX(), player.getY()+50 );
                 getWorld().removeObject(this);
             }
         }

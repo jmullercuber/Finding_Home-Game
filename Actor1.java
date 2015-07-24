@@ -168,14 +168,6 @@ public class Actor1 extends Actor
 
     public void activateBomb()
     {
-        Actor haveBomb = getOneIntersectingObject(bombIcon.class);
-        if(haveBomb != null){
-            bomb += 1;
-            if(timer <= 1000) {
-                getWorld().addObject(new bombText(),getX(), getY() +50 );
-            }
-            getWorld().removeObject(haveBomb);
-        }
         if(bomb >= 1)
         {
             if(Greenfoot.isKeyDown("Q") || Greenfoot.isKeyDown("E"))
