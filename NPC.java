@@ -28,7 +28,6 @@ public class NPC extends Actor
         
 
             
-        
         npcshoot();
         movement();
         drift();
@@ -53,6 +52,8 @@ public class NPC extends Actor
         bulletDelay = 10;
         
     }
+  
+    
     /**
      * Depending on the last direction of the player, the ship will continue to "drift" in that direction.
      */
@@ -68,7 +69,7 @@ public class NPC extends Actor
             setLocation(getX() + 1, getY());
         }
         if (movinLeft == 1) {
-            setLocation(getX() - 1, getY());
+            setLocation(getX() - 2, getY());
         }
     }
     public void engineStatus()
@@ -112,7 +113,7 @@ public class NPC extends Actor
         }
         if ( (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) && !(Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) )
         {
-            setLocation(getX(), getY() - 2);
+            setLocation(getX(), getY() - 3);
             movin = 1;
             movinUp = 1;
             movinLeft = 0;
@@ -121,7 +122,7 @@ public class NPC extends Actor
         }
         else if ( (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) && !(Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) )
         {
-            setLocation(getX(), getY() + 2);
+            setLocation(getX(), getY() + 3);
             movin = 1;
             movinDown = 1;
             movinUp = 0;
