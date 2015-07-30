@@ -14,11 +14,9 @@ public class Win extends World
      * 
      */
     public Win()
-    {    
-
+    {   
         super(600, 400, 1); 
         sound7.play();
-
         prepare();
     }
 
@@ -28,9 +26,9 @@ public class Win extends World
      */
     private void prepare()
     {
-        PowerUps powerups = new Radio();
+        Actor powerups = new NPC();
         addObject(powerups, 241, 252);
-        PowerUps powerups2 = new bombIcon();
+        Actor powerups2 = new NPC();
         addObject(powerups2, 189, 298);
     }
 }

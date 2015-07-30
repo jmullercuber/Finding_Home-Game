@@ -10,7 +10,6 @@ public class Radio extends PowerUps
 {
     public Radio() {
         super(-2);
-        setImage("Ship Engine Off.png");
     }
     
     public void touched()

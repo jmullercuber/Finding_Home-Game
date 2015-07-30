@@ -10,7 +10,6 @@ public class bombIcon extends PowerUps
 {
     public bombIcon() {
         super(-2);
-        setImage("Ship Engine Off.png");
     }
     
     public void touched()

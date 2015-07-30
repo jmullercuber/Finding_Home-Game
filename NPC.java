@@ -18,16 +18,12 @@ public class NPC extends Actor
     int bulletDelay;
     private int name;
 
-    
     /**
      * Act - do whatever the NPC wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        
-
-            
         npcshoot();
         movement();
         drift();
@@ -47,13 +43,9 @@ public class NPC extends Actor
 
     public NPC()
     {
-       
-        
-        bulletDelay = 10;
-        
+        bulletDelay = 10;      
     }
-  
-    
+
     /**
      * Depending on the last direction of the player, the ship will continue to "drift" in that direction.
      */
@@ -72,6 +64,7 @@ public class NPC extends Actor
             setLocation(getX() - 2, getY());
         }
     }
+    
     public void engineStatus()
     {
          if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
@@ -83,6 +76,7 @@ public class NPC extends Actor
              setImage("Ship Engine Off.png");
          }
     }
+    
     public void movement()
     {
         if ( (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) && !(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) )
@@ -138,6 +132,7 @@ public class NPC extends Actor
         }
         movin = 0;
     }
+    
     public void generateDeathline(){
         name = Greenfoot.getRandomNumber(10);
         if(name == 1){

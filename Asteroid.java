@@ -67,7 +67,7 @@ public class Asteroid extends asteroidSuper
      */
     public void breakUp() {
         // if not at the minimum size
-        if (this.size < 6) {
+        if (this.size < 5) {
             // generate a random number of smaller asteroids
             for (int i=0; i < 1+Greenfoot.getRandomNumber(2); i++) {
                 // one size smaller
