@@ -9,7 +9,6 @@ import greenfoot.*;
 public class playAgainButton extends Button
 {
     //GreenfootSound sound;
-
     GreenfootSound sound = new GreenfootSound("1.wav");
     int mute = 0;
     // Constructor
@@ -28,7 +27,6 @@ public class playAgainButton extends Button
         if(Greenfoot.isKeyDown("m")){
             mute = 1;
             sound.stop();
-
         }
     }
     

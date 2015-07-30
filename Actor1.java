@@ -65,11 +65,6 @@ public class Actor1 extends Actor
         }
     }
 
-    public Actor1()
-    {
-
-    }
-
     /**
      * Plays the continuous background music.
      * Runs on hard timer, int timer. timer ++ included here.
@@ -102,7 +97,10 @@ public class Actor1 extends Actor
             Greenfoot.setWorld(new lose());
         }
     }
-
+    
+    /**
+     * Determines whether the ship's image should be engineOn or engineOff.
+     */
     public void engineStatus()
     {
         if ( Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d") )
@@ -166,6 +164,9 @@ public class Actor1 extends Actor
         moving = 0;
     }
 
+    /**
+     * Creates new explosions if player has bomb. (if bomb >= 1)
+     */
     public void activateBomb()
     {
         if(bomb >= 1)
@@ -194,7 +195,7 @@ public class Actor1 extends Actor
                 if(timer <= 200) {
                     getWorld().addObject(new actorText(), getX() + 100, getY());
                 }
-                bulletDelay = 60;
+                bulletDelay = 20;
             }
         }
         if (bulletDelay > 0) {

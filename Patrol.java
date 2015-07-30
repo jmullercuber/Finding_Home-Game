@@ -2,7 +2,7 @@ import greenfoot.*;
 import java.awt.Color;
 
 /**
- * Write a description of class Patrol here.
+ * Currently has no purpose.
  * 
  * @author (your name) 
  * @version (a version number or a date)
