@@ -25,7 +25,7 @@ public class Asteroid extends asteroidSuper
         size = sz;
         rotateSpeed = Greenfoot.getRandomNumber(4);
         asteroidSpeed = Greenfoot.getRandomNumber(4);
-        GreenfootImage image = new GreenfootImage(size + ".png");
+        GreenfootImage image = new GreenfootImage(Greenfoot.getRandomNumber(4) + ".png");
         setImage(image);
     }
 
@@ -37,6 +37,9 @@ public class Asteroid extends asteroidSuper
     {
         move();
         checkEdge();
+        if(size == 1) {
+            turn(-rotateSpeed);
+        }
         
         a = Greenfoot.getRandomNumber(4);
     }
@@ -49,7 +52,10 @@ public class Asteroid extends asteroidSuper
         // drift
         setLocation(getX() - (asteroidSpeed + 2), getY());
         // slowly rotate counter-clockwise
-        turn(-rotateSpeed);
+        //turn(-rotateSpeed);
+        if(size == 1) {
+            turn(-rotateSpeed);
+        }
     }
 
     /**
